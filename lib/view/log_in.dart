@@ -26,8 +26,6 @@ class LoginPage extends StatelessWidget {
 
     codeSent = (String? verificationId, [int? forceResendingToken]) async {
       print("check your phone");
-
-     
       controller.verificationId = verificationId!;
        Get.to(() => Verification());
       print(controller.verificationId);
@@ -36,14 +34,10 @@ class LoginPage extends StatelessWidget {
     verificationFailed = (FirebaseAuthException authException) {
       Get.snackbar("Failed", "Please Enter valid Mobile Number",
           snackPosition: SnackPosition.BOTTOM);
-
       print(authException.message);
-      
     };
 
     codeAutoRetrievalTimeout = (String verificationId) {
-      print(verificationId);
-     
       controller.verificationId = verificationId;
       print(controller.verificationId);
     };
@@ -82,7 +76,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  field(BuildContext context, double maxWidth) {
+ ListView field(BuildContext context, double maxWidth) {
     return ListView(
       shrinkWrap: true,
      
@@ -111,10 +105,10 @@ class LoginPage extends StatelessWidget {
                   }
                   return null;
                 },
-                decoration: InputDecoration(
+                decoration:const InputDecoration(
                   focusedBorder: InputBorder.none,
                   filled: true,
-                  border: const OutlineInputBorder(borderSide: BorderSide.none),
+                  border:  OutlineInputBorder(borderSide: BorderSide.none),
                 ),
               ),
             ),
@@ -122,7 +116,7 @@ class LoginPage extends StatelessWidget {
         ),
         Container(
           width: maxWidth / 1.4,
-          margin: EdgeInsets.only(left: 20, right: 20),
+          margin:const EdgeInsets.only(left: 20, right: 20),
           child: ElevatedButton(
             onPressed: () async {
               if (_formKey.currentState!.validate()) {

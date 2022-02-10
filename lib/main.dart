@@ -14,17 +14,22 @@ Future main() async {
   await Firebase.initializeApp();
   Get.put(Controller());
  
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {final controller= Get.put(Controller());
+   MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-   final controller= Get.put(Controller());
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      home:controller.userIsAlreadyLogin!?HomePage(): LoginPage(),
+   
+    return GetBuilder<Controller>(
+     
+      builder: (controller) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: controller.userIsAlreadyLogin == true ? HomePage() : LoginPage(),
+        );
+      },
     );
   }
 }
